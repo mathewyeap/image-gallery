@@ -1,0 +1,22 @@
+{% extends ':admin/category:base.html.twig' %}
+
+{% block heading %}Create a new category{% endblock %}
+
+{% block main_content %}
+    {{ form_start(form) }}
+
+    {{ form_label(form.name) }}
+    {{ form_errors(form.name) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Fruits'}}) }}
+    <span class="help-block">Enter the category name (e.g. Fruits)</span>
+
+    {{ form_label(form.tags) }}
+    {{ form_errors(form.tags) }}
+    {{ form_widget(form.tags, {'attr': {'class': 'form-control', 'placeholder': 'apples, bananas, cherries'}}) }}
+    <span class="help-block">Enter a comma separated list of tags for this category (e.g. apples, bananas, cherries)</span>
+
+    <button class="btn btn-success" type="submit">Create</button>
+    <a class="btn btn-default" href="{{ path('admin_category_index') }}">Back</a>
+
+    {{ form_end(form) }}
+{% endblock %}

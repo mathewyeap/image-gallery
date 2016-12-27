@@ -1,0 +1,28 @@
+{% extends ':admin/category:base.html.twig' %}
+
+{% block heading %}All categories{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="btn btn-primary" href="{{ path('admin_category_new') }}">Create a new category</a>
+        </div>
+    </div>
+
+    <br>
+
+    {% if categories is empty %}
+        There are no existing categories.
+    {% else %}
+        <div class="list-group">
+            {% for category in categories %}
+                <a class="list-group-item" href="{{ path("admin_category_edit", {'id': category.id}) }}">
+                    {{ category.name }}
+                    {% for tag in category.tags|reverse %}
+                        <span class="badge badge-info">{{ tag }}</span>
+                    {% endfor %}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

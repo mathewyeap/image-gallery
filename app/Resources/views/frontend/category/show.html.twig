@@ -1,0 +1,48 @@
+{% extends ':frontend/category:base.html.twig' %}
+
+{% block heading %}{{ current_category.slug|title }} Gallery{% endblock %}
+
+{% block main_display %}
+    <div id="main-display-1" class="row">
+        <div class="col-xs-12">
+            {% for row in 1..3 %}
+                <div class="row">
+                    {% for i in 1..4 %}
+                        <div class="col-sm-3 col-xs-6">
+                            <a href="javascript:void(0)" class="thumbnail">
+                                <img src="{{ asset('img/default-placeholder.png') }}" data-default-src="{{ asset('img/default-placeholder.png') }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="row">
+                <nav class="col-xs-12">
+                    <ul class="pager">
+                        <li class="previous"><a id="prev-page-btn" href="javascript:void(0)"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                        <li class="next"><a id="next-page-btn" href="javascript:void(0)">Next <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div id="main-display-2" class="row">
+        <div class="col-sm-8">
+            <img class="img-responsive" src="" style="margin: 0 auto 15px;">
+        </div>
+        <div class="col-sm-4">
+            <a id="back-btn" class="btn btn-default btn-block" href="javascript:void(0)">Back</a>
+            <h3 id="photo-title"></h3>
+            <p id="photo-desc"></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var tags = {{ current_category.tags|json_encode|raw }};
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}

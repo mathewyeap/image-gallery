@@ -1,0 +1,28 @@
+{% extends ':admin/category:base.html.twig' %}
+
+{% block heading %}Edit {{ category.name }} category{% endblock %}
+
+{% block main_content %}
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.name) }}
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Fruits'}}) }}
+            <span class="help-block">Enter the category name (e.g. Fruits)</span>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.tags) }}
+            {{ form_errors(form.tags) }}
+            {{ form_widget(form.tags, {'attr': {'class': 'form-control', 'placeholder': 'apples, bananas, cherries'}}) }}
+            <span class="help-block">Enter some tags separated by commas that you wish to search for (e.g. apples, bananas, cherries)</span>
+        </div>
+
+        <button class="btn btn-success" type="submit">Update</button>
+        <a class="btn btn-default" href="{{ path('admin_category_index') }}">Back</a>
+    {{ form_end(form) }}
+<br>
+    {{ form_start(delete_form) }}
+        <button class="btn btn-danger" type="submit">Delete</button>
+    {{ form_end(delete_form) }}
+{% endblock %}

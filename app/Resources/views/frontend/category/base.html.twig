@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="page-header">
+            <h1>{% block heading %}{% endblock %}</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="list-group">
+                    {% for category in categories %}
+                        <a class="list-group-item {% if current_category is defined and category.id == current_category.id %}active{% endif %}" href="{{ path('frontend_category_show', { "slug": category.slug }) }}">{{ category.name|title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-9">
+                {% block main_display %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
